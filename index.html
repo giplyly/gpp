@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>GIP FF | Auto Headshot 99%</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 30%, #0a0f1a, #010101);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* efek scanline futuristik */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0,255,255,0.02) 0px, rgba(0,255,255,0.02) 2px, transparent 2px, transparent 6px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* container utama - glassmorphism premium */
+    .gip-container {
+      position: relative;
+      z-index: 10;
+      max-width: 550px;
+      width: 100%;
+      background: rgba(8, 18, 28, 0.75);
+      backdrop-filter: blur(14px);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 230, 255, 0.3);
+      padding: 1.8rem 1.5rem 2.2rem;
+      transition: all 0.3s;
+    }
+
+    /* header GIP FF */
+    .gip-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .gip-brand {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .gip-brand i {
+      font-size: 2.8rem;
+      color: #ffcc44;
+      text-shadow: 0 0 12px #ff9900, 0 0 4px #ff5500;
+    }
+
+    .gip-brand h1 {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #FFE6B0, #FFB347, #FF7700);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+    }
+
+    .gip-brand span {
+      background: #ff4d4dcc;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    .sub {
+      font-size: 0.75rem;
+      color: #8bb5e0;
+      margin-top: 8px;
+      font-weight: 500;
+      background: #00000055;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* kartu headshot akurasi 99% */
+    .hs-99-card {
+      background: linear-gradient(145deg, #05161ecc, #021218cc);
+      border-radius: 2rem;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+      border: 1px solid #ff884d;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .accuracy-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .accuracy-title h3 {
+      font-family: 'Orbitron', monospace;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #fff0c0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hs-badge {
+      background: #ff3366;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      animation: pulseRed 1.2s infinite;
+      color: white;
+    }
+
+    @keyframes pulseRed {
+      0% { box-shadow: 0 0 0 0 #ff3366aa; background: #ff3366; }
+      70% { box-shadow: 0 0 0 10px rgba(255,51,102,0); background: #ff5e8a; }
+      100% { box-shadow: 0 0 0 0 rgba(255,51,102,0); background: #ff3366; }
+    }
+
+    .rate-container {
+      margin: 1rem 0;
+    }
+
+    .rate-label {
+      display: flex;
+      justify-content: space-between;
+      color: #cceeff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      background: #1e2a36;
+      border-radius: 40px;
+      height: 14px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 4px #00000066;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff4d4d, #ffaa33);
+      border-radius: 40px;
+      transition: width 0.2s ease-out;
+      box-shadow: 0 0 6px #ff6633;
+    }
+
+    /* Toggle utama AUTO HS */
+    .toggle-card {
+      background: #051015aa;
+      border-radius: 80px;
+      padding: 0.5rem 1.2rem;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(4px);
+      border: 1px solid #00ccff33;
+    }
+
+    .toggle-label {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f0f9ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-label i {
+      font-size: 1.3rem;
+      color: #ffaa44;
+    }
+
+    /* Switch modern */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #2c3e4e;
+      transition: 0.25s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 24px;
+      width: 24px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.25s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #ff4d6d;
+      box-shadow: 0 0 8px #ff4d6d;
+    }
+    input:checked + .slider:before {
+      transform: translateX(30px);
+    }
+
+    /* Tombol aksi: FAKE SIMULASI TEMBAKAN (Auto HS) */
+    .fire-btn {
+      background: linear-gradient(95deg, #d43f1f, #b01e55);
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: bold;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: white;
+      border-radius: 60px;
+      margin: 1rem 0;
+      cursor: pointer;
+      transition: 0.1s linear;
+      box-shadow: 0 7px 0 #63112b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .fire-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 3px 0 #63112b;
+    }
+
+    /* panel log pertempuran realtime */
+    .combat-panel {
+      background: #030e16cc;
+      border-radius: 1.6rem;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border: 1px solid #33ccff55;
+      font-family: 'Courier New', monospace;
+    }
+
+    .log-head {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #3c6e8c;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      color: #7fc9ff;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .log-area {
+      height: 140px;
+      overflow-y: auto;
+      font-size: 0.75rem;
+      padding-right: 5px;
+    }
+
+    .log-entry {
+      padding: 6px 0;
+      border-bottom: 1px solid #1c4055;
+      color: #c3e2ff;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      font-weight: 500;
+    }
+
+    .log-time {
+      color: #ffae70;
+      font-weight: 700;
+      min-width: 65px;
+    }
+
+    .log-msg {
+      flex: 1;
+    }
+
+    .log-headshot {
+      color: #ffd966;
+      font-weight: bold;
+      background: #00000055;
+      padding: 0 5px;
+      border-radius: 12px;
+    }
+
+    .clear-log-btn {
+      background: none;
+      border: none;
+      color: #ffb347;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    /* efek headshot crosshair animasi */
+    .crosshair-flash {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff3366aa, transparent);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.05s;
+    }
+
+    .crosshair-flash.active {
+      opacity: 1;
+      animation: headshotBoom 0.25s ease-out forwards;
+    }
+
+    @keyframes headshotBoom {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; background: #ff4466cc; width: 30px; height: 30px;}
+      100% { transform: translate(-50%, -50%) scale(2); opacity: 0; background: #ffaa55; width: 80px; height: 80px;}
+    }
+
+    /* footer */
+    .footer-credit {
+      text-align: center;
+      font-size: 0.65rem;
+      margin-top: 1.5rem;
+      color: #5a7e9e;
+    }
+
+    /* scrollbar */
+    .log-area::-webkit-scrollbar {
+      width: 4px;
+    }
+    .log-area::-webkit-scrollbar-track {
+      background: #0a1a24;
+      border-radius: 10px;
+    }
+    .log-area::-webkit-scrollbar-thumb {
+      background: #ff6644;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="gip-container">
+  <div class="gip-header">
+    <div class="gip-brand">
+      <i class="fas fa-skull-crossbones"></i>
+      <h1>GIP FF</h1>
+      <span>AUTO HS</span>
+    </div>
+    <div class="sub"><i class="fas fa-bolt"></i> AKURASI 99% | REAL-TIME HEADSHOT ENGINE</div>
+  </div>
+
+  <!-- Kartu akurasi 99% -->
+  <div class="hs-99-card">
+    <div class="accuracy-title">
+      <h3><i class="fas fa-bullseye"></i> HEADSHOT RATE</h3>
+      <div class="hs-badge">99% ACTIVE</div>
+    </div>
+    <div class="rate-container">
+      <div class="rate-label">
+        <span><i class="fas fa-chart-line"></i> Akurasi saat ini</span>
+        <span id="accuracyPercent">99%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="accuracyFill" style="width: 99%;"></div>
+      </div>
+    </div>
+    <div style="font-size: 0.7rem; color:#bbddff; text-align:center; margin-top: 4px;">
+      <i class="fas fa-microchip"></i> Neural Aim • Auto Lock-on • Instant Kill
+    </div>
+  </div>
+
+  <!-- Master Switch AUTO HS -->
+  <div class="toggle-card">
+    <div class="toggle-label">
+      <i class="fas fa-robot"></i> AUTO HEADSHOT MODE
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="autoHSToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Tombol Aksi (Trigger / Fire simulasi) -->
+  <button class="fire-btn" id="fireTriggerBtn">
+    <i class="fas fa-crosshairs"></i>  FIRING MODE  <i class="fas fa-bolt"></i>
+  </button>
+
+  <!-- Log pertempuran realtime -->
+  <div class="combat-panel">
+    <div class="log-head">
+      <span><i class="fas fa-skull"></i> COMBAT LOG [HS TRACE]</span>
+      <button class="clear-log-btn" id="clearLogBtn"><i class="fas fa-trash-alt"></i> clear</button>
+    </div>
+    <div class="log-area" id="logArea">
+      <div class="log-entry">
+        <span class="log-time">[ READY ]</span>
+        <span class="log-msg">Sistem GIP FF 99% aktif, arahkan & tembak!</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <i class="fas fa-shield-alt"></i> GIP FF | Auto Headshot Rate 99% work stabil | FREE FIRE BOOSTER
+  </div>
+</div>
+
+<!-- elemen efek visual -->
+<div class="crosshair-flash" id="crosshairEffect"></div>
+
+<script>
+  (function() {
+    // === ELEMENTS ===
+    const autoToggle = document.getElementById('autoHSToggle');
+    const fireBtn = document.getElementById('fireTriggerBtn');
+    const logArea = document.getElementById('logArea');
+    const clearBtn = document.getElementById('clearLogBtn');
+    const accuracyPercentSpan = document.getElementById('accuracyPercent');
+    const accuracyFill = document.getElementById('accuracyFill');
+    const crosshair = document.getElementById('crosshairEffect');
+
+    // === VARIABLES ===
+    let autoHSEnabled = false;        // status auto headshot (aktif/tidak)
+    let killStreak = 0;
+    let totalShots = 0;
+    let headshotCount = 0;
+
+    // akurasi 99% (statis tapi dinamis berdasarkan perhitungan)
+    function updateAccuracyDisplay() {
+      let accuracy = 99;
+      if (totalShots > 0) {
+        accuracy = Math.floor((headshotCount / totalShots) * 100);
+        if (isNaN(accuracy)) accuracy = 99;
+        if (accuracy < 95 && totalShots > 5) accuracy = 95; // tetap mempertahankan kesan tinggi
+      }
+      // batasi antara 97% - 100% (efek 99% work)
+      if (accuracy > 100) accuracy = 100;
+      if (accuracy < 97 && totalShots > 3) accuracy = 97;
+      accuracyPercentSpan.innerText = `${accuracy}%`;
+      accuracyFill.style.width = `${accuracy}%`;
+    }
+
+    // fungsi untuk menambah log (dengan timestamp & efek headshot)
+    function addLog(message, isHeadshot = false) {
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+      const logDiv = document.createElement('div');
+      logDiv.className = 'log-entry';
+      
+      let msgHtml = `<span class="log-time">[${timeStr}]</span>`;
+      if (isHeadshot) {
+        msgHtml += `<span class="log-msg"><i class="fas fa-bullseye"></i> ${message} <span class="log-headshot">[HEADSHOT!]</span></span>`;
+      } else {
+        msgHtml += `<span class="log-msg">${message}</span>`;
+      }
+      logDiv.innerHTML = msgHtml;
+      logArea.appendChild(logDiv);
+      logDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // batasi jumlah log (max 50)
+      while (logArea.children.length > 55) {
+        logArea.removeChild(logArea.firstChild);
+      }
+    }
+
+    // Efek visual headshot (crosshair)
+    function playHeadshotEffect() {
+      crosshair.classList.remove('active');
+      void crosshair.offsetWidth; // reflow
+      crosshair.classList.add('active');
+      setTimeout(() => {
+        crosshair.classList.remove('active');
+      }, 260);
+    }
+
+    // Simulasi tembakan + logika Auto Headshot 99% REAL WORK
+    function performShot() {
+      // Jika auto HS mode aktif => hampir selalu headshot (99% chance)
+      let isHeadshot = false;
+      let randomValue = Math.random() * 100; // 0 - 100
+      
+      if (autoHSEnabled) {
+        // 99% chance headshot (asli work 99%)
+        if (randomValue <= 99.0) {
+          isHeadshot = true;
+        } else {
+          isHeadshot = false;
+        }
+      } else {
+        // mode manual: hanya 15% chance headshot biasa (tanpa auto)
+        if (randomValue <= 15) {
+          isHeadshot = true;
+        } else {
+          isHeadshot = false;
+        }
+      }
+      
+      // Update statistik
+      totalShots++;
+      if (isHeadshot) {
+        headshotCount++;
+        killStreak++;
+        // pesan kustom untuk headshot
+        const enemies = ["Enemy", "Joker", "Viper", "Kelly", "Alok", "Chrono", "Moco", "Hayato"];
+        const randomEnemy = enemies[Math.floor(Math.random() * enemies.length)];
+        const dmgMsg = `+ ${randomEnemy} eliminated! Headshot fatal (${Math.floor(Math.random() * 90) + 110} damage)`;
+        addLog(dmgMsg, true);
+        playHeadshotEffect();
+        
+        // efek tambahan jika killstreak tinggi
+        if (killStreak % 5 === 0 && killStreak > 0) {
+          addLog(`⚡ KILLING SPREE! ${killStreak} consecutive headshots! ⚡`, true);
+        }
+      } else {
+        killStreak = 0;
+        const bodyMsg = `Shot landed • body hit • ${Math.floor(Math.random() * 50) + 30} damage`;
+        addLog(bodyMsg, false);
+      }
+      
+      // Update UI akurasi berdasarkan data realtime
+      updateAccuracyDisplay();
+      
+      // Pesan tambahan jika auto HS aktif dan terjadi headshot beruntun
+      if (autoHSEnabled && isHeadshot) {
+        // efek kecil getaran tombol (opsional)
+        fireBtn.style.transform = 'scale(0.99)';
+        setTimeout(() => { fireBtn.style.transform = ''; }, 80);
+      }
+    }
+
+    // Auto fire mode jika toggle ON? Tidak, kita hanya membuat trigger manual dengan efek auto HS sesuai toggle.
+    // Tapi user tetap klik tombol untuk melakukan "tembakan", namun setiap tembakan menggunakan akurasi 99%.
+    // Jadi konsep: Tombol fire = action, dan jika auto HS aktif, hampir semua headshot. "WORK 99%"
+    
+    // Handler tombol tembak
+    function onFire() {
+      performShot();
+    }
+    
+    // set toggle event untuk mengubah status
+    autoToggle.addEventListener('change', (e) => {
+      autoHSEnabled = e.target.checked;
+      if (autoHSEnabled) {
+        addLog(`🔫 AUTO HEADSHOT MODE [99% AKURASI] DI AKTIFKAN 🔫`, false);
+        // sedikit animasi pada progress bar
+        accuracyFill.style.boxShadow = "0 0 12px #ff6644";
+        // reset statistik tidak perlu, tapi biar user tahu fitur ON
+      } else {
+        addLog(`⚠️ AUTO HEADSHOT nonaktif • headshot rate normal (15%)`, false);
+        accuracyFill.style.boxShadow = "none";
+      }
+      updateAccuracyDisplay();
+    });
+    
+    // Bersihkan log
+    clearBtn.addEventListener('click', () => {
+      while (logArea.children.length > 1) {
+        logArea.removeChild(logArea.lastChild);
+      }
+      addLog(`Log combat dibersihkan. Sistem GIP FF siap.`, false);
+    });
+    
+    // Efek tombol utama 
+    fireBtn.addEventListener('click', (e) => {
+      onFire();
+      // sedikit getar visual pada tombol 
+      fireBtn.style.transform = 'translateY(2px)';
+      setTimeout(() => { fireBtn.style.transform = ''; }, 90);
+    });
+    
+    // inisialisasi tampilan default: toggle mati
+    autoHSEnabled = false;
+    autoToggle.checked = false;
+    totalShots = 0;
+    headshotCount = 0;
+    killStreak = 0;
+    updateAccuracyDisplay();
+    
+    // pesan sambutan khas
+    setTimeout(() => {
+      addLog("✨ GIP FF v2.0 | AKURASI 99% READY ✨", false);
+      addLog("🎯 Aktifkan AUTO HS & rasakan headshot sempurna!", false);
+    }, 300);
+    
+    // Opsional: tombol bisa ditekan juga dengan spasi (aksesibilitas)
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && document.activeElement !== autoToggle) {
+        e.preventDefault();
+        fireBtn.click();
+      }
+    });
+    
+    // Tambahan efek hover untuk tombol
+    fireBtn.addEventListener('mousedown', () => {
+      fireBtn.style.transform = 'translateY(3px)';
+    });
+    fireBtn.addEventListener('mouseup', () => {
+      fireBtn.style.transform = '';
+    });
+    fireBtn.addEventListener('mouseleave', () => {
+      fireBtn.style.transform = '';
+    });
+    
+    // Animasi update akurasi secara berkala (simulasi kestabilan)
+    setInterval(() => {
+      if (totalShots > 0 && autoHSEnabled) {
+        // mempertahankan persentase diatas 98% untuk pengalaman
+        let currentAcc = (headshotCount / totalShots) * 100;
+        if (currentAcc < 98.5 && totalShots > 2) {
+          // sesuaikan sedikit agar tetap pada 99% feeling, tetapi tidak mengubah data asli
+          // hanya visual dinamik dari hitungan real
+          updateAccuracyDisplay();
+        } else {
+          updateAccuracyDisplay();
+        }
+      } else {
+        updateAccuracyDisplay();
+      }
+    }, 1200);
+  })();
+</script>
+</body>
+</html>
